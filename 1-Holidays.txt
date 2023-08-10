@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+
+int main()
+{
+     int n; // Read input number of days in year
+    scanf("%d", &n);
+    int complete_weeks = n / 7; // Calculate complete weeks
+    int remaining_days = n % 7; // Calculate remaining days
+ 
+    int min_days_off = complete_weeks * 2;
+    int max_days_off = min_days_off + (remaining_days > 2 ? 2 : remaining_days);
+    printf("%d %d\n", min_days_off, max_days_off);
+
+    return 0;
+}
+

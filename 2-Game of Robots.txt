@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main() {
+    int n, k;
+    scanf("%d %d", &n, &k);
+
+    int identifiers[n];
+    for (int i = 0; i < n; ++i) {
+        scanf("%d", &identifiers[i]);
+    }
+
+    // Find the row number x
+    int x = 0;
+    while ((x + 1) * x / 2 < k) {
+        ++x;
+    }
+
+    // Calculate the position within the row
+    int position = k - (x * (x - 1) / 2);
+
+    // Print the k-th identifier
+    printf("%d\n", identifiers[position - 1]);
+
+    return 0;
+}

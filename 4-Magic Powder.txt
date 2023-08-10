@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+    int n, k;
+    scanf("%d %d", &n, &k);
+
+    int grams_required_for_one_cookie[n];
+    for (int i = 0; i < n; ++i) {
+        scanf("%d", &grams_required_for_one_cookie[i]);
+    }
+
+    int available_grams_of_ingredient[n];
+    for (int i = 0; i < n; ++i) {
+        scanf("%d", &available_grams_of_ingredient[i]);
+    }
+
+    int maxCookies = 1e10; // Initialize to a large value
+
+    for (int i = 0; i < n; ++i) {
+        int maxCookiesUsingIngredient = (available_grams_of_ingredient[i] + k) / grams_required_for_one_cookie[i];
+        maxCookies = (maxCookiesUsingIngredient < maxCookies) ? maxCookiesUsingIngredient : maxCookies;
+    }
+
+    printf("%d\n", maxCookies);
+
+    return 0;
+}

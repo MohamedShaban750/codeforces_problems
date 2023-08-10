@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+int main() {
+    int n, m;
+    scanf("%d", &n);
+
+    int scientistsLanguages[n];
+    for (int i = 0; i < n; ++i) {
+        scanf("%d", &scientistsLanguages[i]);
+    }
+
+    scanf("%d", &m);
+
+    int audioLanguages[m], subtitlesLanguages[m];
+    for (int i = 0; i < m; ++i) {
+        scanf("%d", &audioLanguages[i]);
+    }
+
+    for (int i = 0; i < m; ++i) {
+        scanf("%d", &subtitlesLanguages[i]);
+    }
+
+    int pleasedCount[m] ;
+    int almostPleasedCount[m] ;
+
+    for (int i = 0; i < n; ++i) {
+        int langKnown = scientistsLanguages[i];
+
+        for (int j = 0; j < m; ++j) {
+            if (audioLanguages[j] == langKnown) {
+                pleasedCount[j]++;
+            } else if (subtitlesLanguages[j] == langKnown) {
+                almostPleasedCount[j]++;
+            }
+        }
+    }
+
+    int selectedMovie = 0;
+    int maxPleasedCount = pleasedCount[0];
+    int maxAlmostPleasedCount = almostPleasedCount[0];
+
+    for (int j = 1; j < m; ++j) {
+        if (pleasedCount[j] > maxPleasedCount || (pleasedCount[j] == maxPleasedCount && almostPleasedCount[j] > maxAlmostPleasedCount)) {
+            selectedMovie = j;
+            maxPleasedCount = pleasedCount[j];
+            maxAlmostPleasedCount = almostPleasedCount[j];
+        }
+    }
+
+    printf("%d\n", selectedMovie + 1); // Adding 1 to convert 0-based index to 1-based index
+
+    return 0;
+}
